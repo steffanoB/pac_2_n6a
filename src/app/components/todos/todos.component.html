@@ -1,0 +1,31 @@
+<div class="container">
+  <h1 class="mt-5">Realizar la consigna debajo de este mensaje</h1>
+</div>
+
+<div class="input-group mb-3">
+  <input type="text" [(ngModel)]="searchQuery" (input)="filterTodos()" class="form-control" placeholder="Search todos...">
+  <button class="btn btn-primary" type="button" (click)="filterTodos()">Search</button>
+</div>
+
+<h2>Todo List</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Completed</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let todo of filterTodos()">
+      <td>{{ todo.id }}</td>
+      <td>{{ todo.title }}</td>
+      <td>{{ todo.completed ? 'Yes' : 'No' }}</td>
+      <td><button class="btn btn-info" (click)="viewDetails(todo)">Details</button></td>
+    </tr>
+    <tr *ngIf="filterTodos().length === 0"> <!-- Show message if filtered todos array is empty -->
+      <td colspan="4">No todos found.</td>
+    </tr>
+  </tbody>
+</table>
